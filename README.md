@@ -40,7 +40,7 @@ ___
 
 ### 1. Awwwards
 
-![Sou a Joana Portafolio](https://github.com/rosi2701/trabajo-final/blob/main/img_yesyes/joana.png?raw=true)
+!(https://github.com/josecastrod/Trabajo-Final/blob/main/Captura%20de%20pantalla%202025-11-20%20093550.png)
 
 Qué es: Página de repoertorio de websites que han sido reconocidas.
 Fuente: <(https://www.awwwards.com/?utm_source=chatgpt.com)>
