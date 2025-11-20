@@ -40,7 +40,7 @@ ___
 
 ### 1. Awwwards
 
-!(https://github.com/josecastrod/Trabajo-Final/blob/main/Captura%20de%20pantalla%202025-11-20%20093550.png)
+!(Captura de pantalla 2025-11-20 093550)
 
 Qué es: Página de repoertorio de websites que han sido reconocidas.
 Fuente: <(https://www.awwwards.com/?utm_source=chatgpt.com)>
@@ -57,7 +57,7 @@ Aspectos negativos:
 
 ### 2. siteinspire
 
-![Yifei Luo Portafolio](https://github.com/rosi2701/trabajo-final/blob/main/img_yesyes/yifeiluo.png?raw=true)
+!(Imagen de WhatsApp 2025-11-20 a las 10.31.36_06cfa919)
 
 Qué es: A showcase of the web’s finest design + talent
 Fuente: <https://www.siteinspire.com/about>
@@ -74,7 +74,7 @@ Aspectos negativos:
 
 ### 3. hellosuperheroes
 
-![Better Weather Studio](https://github.com/rosi2701/trabajo-final/blob/main/img_yesyes/betterweather.png?raw=true)
+!(Captura de pantalla 2025-11-20 094827)
 
 Qué es: Agencia de diseño
 Fuente: <https://hellosuperheroes.com/?ref=siteinspire>
@@ -90,7 +90,7 @@ Aspectos negativos:
 
 ### 4. Other – Free Portfolio Template 
 
-![Portafolio 1](Referentes/Portafolio%201.png)
+![Portafolio 1](Imagen de WhatsApp 2025-11-20 a las 10.29.43_db63832d)
 
 Qué es: Una plantilla minimalista para portafolios creativos desarrollada en **Framer**, que permite presentar proyectos en formato cuadrícula, lista o imagen completa.  
 Fuente: [https://other-template.framer.website/](https://other-template.framer.website/)
@@ -109,4 +109,4 @@ Aspectos negativos:
 ## Referentes - Moodboard
 
 El moodboard propone una estética minimalista y editorial, con énfasis en el contraste entre tonos neutros y acentos en colores más vibrantes. Busca generar movimiento a través de la construcción del esqueleto del layout: columnas que enmarcan, saltos de escala en titulares y cortes que marcan el paso entre secciones. 
-![Moodboard](Referentes/Moodboard.png)
+![Moodboard](1.png)
