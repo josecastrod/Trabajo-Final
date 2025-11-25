@@ -1,0 +1,943 @@
+:root {
+    /* Colores */
+    --bg-0: #ffffff; /* Fondo principal (Blanco) */
+    --bg-light: rgb(245, 245, 245); /* Fondo secundario muy sutil */
+    --fg-0: #000000; /* Color de texto principal (Negro) */
+    --fg-1: #555555; /* Color de texto secundario (Gris Oscuro) */
+    --accent: #000000; /* Acento siempre es negro para el estilo minimalista */
+    
+    /* Tipografía */
+    --font-head: 'Inter', system-ui, sans-serif; /* Todo Sans-Serif */
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    /* Otros */
+    --radius: 0px; /* Sin bordes redondeados */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg-0);
+    color: var(--fg-0);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    line-height: 1.5;
+    font-size: 16px; /* Base para rem */
+}
+
+/* Ocultar secciones dinámicas */
+.hidden {
+    display: none !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Layout General */
+/* ------------------------------------------------------------------ */
+
+.main-container {
+    max-width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Header y Navegación (Minimalista y distribuido) */
+/* ------------------------------------------------------------------ */
+
+.main-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: var(--bg-0);
+    z-index: 100;
+}
+
+.header-content {
+    max-width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.header-left, .header-right {
+    flex-basis: 33%;
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    justify-content: flex-start;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+.header-meta {
+    color: var(--fg-0);
+    opacity: 0.8;
+}
+
+.main-nav {
+    flex-basis: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Espacio mínimo entre Index · Info */
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--fg-0);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 400;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.nav-button.active {
+    font-weight: 500;
+    border-bottom: 1px solid var(--fg-0); /* Subrayado discreto */
+}
+
+.nav-button:hover:not(.active) {
+    opacity: 0.6;
+}
+
+.nav-separator {
+    color: var(--fg-0);
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Home Page (Index) */
+/* ------------------------------------------------------------------ */
+
+.hero-section {
+    padding: 120px 0 60px;
+    text-align: left;
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+.hero-info {
+    max-width: 300px; /* Columna de texto */
+}
+
+.hero-section .label {
+    font-size: 0.85rem;
+    color: var(--fg-0);
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.hero-section h1 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(3.5rem, 6vw, 5rem);
+    margin: 0 0 32px;
+    line-height: 1.0;
+    letter-spacing: -0.05em;
+    max-width: 250px;
+}
+
+.hero-section p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--fg-0);
+    opacity: 0.8;
+}
+
+/* Filtros (Links de texto) */
+.filters-section {
+    padding: 20px 0 0; /* Menos padding vertical */
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.works-count {
+    display: flex;
+    align-items: flex-end;
+}
+
+.works-count h2 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-right: 8px;
+    letter-spacing: 0;
+}
+
+.works-count p {
+    color: var(--fg-1);
+    font-size: 0.9rem;
+    margin: 0 0 1px 0;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--fg-1);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.25s ease;
+}
+
+.filter-button.active {
+    color: var(--fg-0);
+    font-weight: 500;
+}
+
+.filter-button:hover:not(.active) {
+    color: var(--fg-0);
+    opacity: 0.8;
+}
+
+/* Grid de proyectos (Sin espaciado) */
+.projects-grid-section {
+    padding: 60px 0 100px;
+}
+
+.projects-grid {
+    display: grid;
+    gap: 0px; /* CERO GAP para efecto de muro */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    background: var(--fg-0); /* Fondo oscuro del muro */
+}
+
+.project-card {
+    background: var(--bg-0);
+    overflow: hidden;
+    transition: opacity .3s ease;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.project-card:hover {
+    opacity: 0.9;
+}
+
+/* Contenedor de imagen (Aspect ratio 1:1) */
+.project-thumb {
+    overflow: hidden;
+    background: var(--bg-light);
+    aspect-ratio: 1/1; 
+    position: relative;
+}
+
+.project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-thumb img {
+    transform: scale(1.05); /* Efecto de zoom sutil */
+}
+
+.project-info {
+    /* Info de proyecto está oculta en este diseño, se usa solo la imagen */
+    display: none; 
+}
+
+
+/* ------------------------------------------------------------------ */
+/* 5. About Page (Info) */
+/* ------------------------------------------------------------------ */
+
+.about-hero {
+    padding: 120px 0 60px;
+}
+
+.about-hero .label {
+    font-size: 0.85rem;
+    color: var(--fg-0);
+    opacity: 0.8;
+    margin: 0 0 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.about-hero h1 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 48px;
+    line-height: 1.1;
+    max-width: 900px;
+    letter-spacing: -0.02em;
+}
+
+.about-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 700px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.about-text p:last-child {
+    color: var(--fg-0);
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+/* Principios */
+.principles-section {
+    padding: 60px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.principles-section h2 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+}
+
+.principles-grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    background: var(--border-color);
+}
+
+.principle-card {
+    padding: 32px 24px;
+    background: var(--bg-0);
+    text-align: center;
+}
+
+.principle-card h3 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Proceso y Skills (Estilo Minimalista) */
+.process-section, .skills-section, .readme-section {
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.process-steps {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.process-step {
+    padding: 10px 15px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--fg-0);
+    font-weight: 500;
+}
+
+.process-arrow {
+    color: var(--fg-1);
+    font-size: 1rem;
+}
+
+.skills-container {
+    background: var(--bg-0);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    max-width: 700px;
+}
+
+/* Barritas de skills */
+.skill-fill {
+    background: var(--fg-0) !important; 
+}
+
+
+/* ------------------------------------------------------------------ */
+/* 6. Footer y Responsividad */
+/* ------------------------------------------------------------------ */
+
+.main-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 40px 0;
+    margin-top: 60px;
+}
+
+.social-links-grid {
+    display: flex;
+    gap: 30px;
+}
+
+.social-link {
+    color: var(--fg-0);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: opacity 0.25s ease;
+    text-transform: uppercase;
+}
+
+.social-link:hover {
+    opacity: 0.6;
+}
+
+/* Ocultar elementos específicos en móvil y viceversa */
+.contact-mobile { display: none; }
+
+
+@media (max-width: 768px) {
+    .header-content {
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header-left { order: 1; flex-basis: auto; }
+    .main-nav { order: 3; flex-basis: 100%; justify-content: flex-start; margin-top: 15px; }
+    .header-right { order: 2; flex-basis: auto; }
+
+    .contact-desktop { display: none; }
+    .contact-mobile { display: block; }
+    
+    .hero-section {
+        flex-direction: column;
+        gap: 30px;
+        padding: 60px 0 40px;
+    }
+    
+    .hero-section h1 {
+        font-size: 3rem;
+        max-width: 100%;
+    }
+
+    .filters-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .about-hero {
+        padding: 60px 0 30px;
+    }
+
+    .process-steps {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .process-arrow {
+        transform: rotate(90deg);
+        margin: 0 0 0 15px;
+    }
+    
+    .social-links-grid {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+:root {
+    /* Colores */
+    --bg-0: #ffffff; /* Fondo principal (Blanco) */
+    --bg-light: rgb(245, 245, 245); /* Fondo secundario muy sutil */
+    --fg-0: #000000; /* Color de texto principal (Negro) */
+    --fg-1: #555555; /* Color de texto secundario (Gris Oscuro) */
+    --accent: #000000; /* Acento siempre es negro para el estilo minimalista */
+    
+    /* Tipografía */
+    --font-head: 'Inter', system-ui, sans-serif; /* Todo Sans-Serif */
+    --font-body: 'Inter', system-ui, sans-serif;
+
+    /* Otros */
+    --radius: 0px; /* Sin bordes redondeados */
+    --border-color: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg-0);
+    color: var(--fg-0);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    line-height: 1.5;
+    font-size: 16px; /* Base para rem */
+}
+
+/* Ocultar secciones dinámicas */
+.hidden {
+    display: none !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Layout General */
+/* ------------------------------------------------------------------ */
+
+.main-container {
+    max-width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Header y Navegación (Minimalista y distribuido) */
+/* ------------------------------------------------------------------ */
+
+.main-header {
+    border-bottom: 1px solid var(--border-color);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    background: var(--bg-0);
+    z-index: 100;
+}
+
+.header-content {
+    max-width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+}
+
+.header-left, .header-right {
+    flex-basis: 33%;
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    justify-content: flex-start;
+}
+
+.header-right {
+    justify-content: flex-end;
+}
+
+.header-meta {
+    color: var(--fg-0);
+    opacity: 0.8;
+}
+
+.main-nav {
+    flex-basis: 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* Espacio mínimo entre Index · Info */
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--fg-0);
+    cursor: pointer;
+    font-size: 0.85rem;
+    font-weight: 400;
+    padding: 4px 0;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.nav-button.active {
+    font-weight: 500;
+    border-bottom: 1px solid var(--fg-0); /* Subrayado discreto */
+}
+
+.nav-button:hover:not(.active) {
+    opacity: 0.6;
+}
+
+.nav-separator {
+    color: var(--fg-0);
+    opacity: 0.5;
+    font-size: 0.8rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Home Page (Index) */
+/* ------------------------------------------------------------------ */
+
+.hero-section {
+    padding: 120px 0 60px;
+    text-align: left;
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+}
+
+.hero-info {
+    max-width: 300px; /* Columna de texto */
+}
+
+.hero-section .label {
+    font-size: 0.85rem;
+    color: var(--fg-0);
+    margin: 0 0 12px;
+    text-transform: uppercase;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.hero-section h1 {
+    font-family: var(--font-head);
+    font-weight: 700;
+    font-size: clamp(3.5rem, 6vw, 5rem);
+    margin: 0 0 32px;
+    line-height: 1.0;
+    letter-spacing: -0.05em;
+    max-width: 250px;
+}
+
+.hero-section p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--fg-0);
+    opacity: 0.8;
+}
+
+/* Filtros (Links de texto) */
+.filters-section {
+    padding: 20px 0 0; /* Menos padding vertical */
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.works-count {
+    display: flex;
+    align-items: flex-end;
+}
+
+.works-count h2 {
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin-right: 8px;
+    letter-spacing: 0;
+}
+
+.works-count p {
+    color: var(--fg-1);
+    font-size: 0.9rem;
+    margin: 0 0 1px 0;
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-button {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: var(--fg-1);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.25s ease;
+}
+
+.filter-button.active {
+    color: var(--fg-0);
+    font-weight: 500;
+}
+
+.filter-button:hover:not(.active) {
+    color: var(--fg-0);
+    opacity: 0.8;
+}
+
+/* Grid de proyectos (Sin espaciado) */
+.projects-grid-section {
+    padding: 60px 0 100px;
+}
+
+.projects-grid {
+    display: grid;
+    gap: 0px; /* CERO GAP para efecto de muro */
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    background: var(--fg-0); /* Fondo oscuro del muro */
+}
+
+.project-card {
+    background: var(--bg-0);
+    overflow: hidden;
+    transition: opacity .3s ease;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.project-card:hover {
+    opacity: 0.9;
+}
+
+/* Contenedor de imagen (Aspect ratio 1:1) */
+.project-thumb {
+    overflow: hidden;
+    background: var(--bg-light);
+    aspect-ratio: 1/1; 
+    position: relative;
+}
+
+.project-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.project-card:hover .project-thumb img {
+    transform: scale(1.05); /* Efecto de zoom sutil */
+}
+
+.project-info {
+    /* Info de proyecto está oculta en este diseño, se usa solo la imagen */
+    display: none; 
+}
+
+
+/* ------------------------------------------------------------------ */
+/* 5. About Page (Info) */
+/* ------------------------------------------------------------------ */
+
+.about-hero {
+    padding: 120px 0 60px;
+}
+
+.about-hero .label {
+    font-size: 0.85rem;
+    color: var(--fg-0);
+    opacity: 0.8;
+    margin: 0 0 24px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.about-hero h1 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin: 0 0 48px;
+    line-height: 1.1;
+    max-width: 900px;
+    letter-spacing: -0.02em;
+}
+
+.about-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 700px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.about-text p:last-child {
+    color: var(--fg-0);
+    opacity: 0.8;
+    margin-bottom: 0;
+}
+
+/* Principios */
+.principles-section {
+    padding: 60px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.principles-section h2 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.8rem;
+    margin-bottom: 32px;
+}
+
+.principles-grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    background: var(--border-color);
+}
+
+.principle-card {
+    padding: 32px 24px;
+    background: var(--bg-0);
+    text-align: center;
+}
+
+.principle-card h3 {
+    font-size: 1rem;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Proceso y Skills (Estilo Minimalista) */
+.process-section, .skills-section, .readme-section {
+    padding: 40px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.process-steps {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 0.9rem;
+}
+
+.process-step {
+    padding: 10px 15px;
+    background: var(--bg-light);
+    border: 1px solid var(--border-color);
+    color: var(--fg-0);
+    font-weight: 500;
+}
+
+.process-arrow {
+    color: var(--fg-1);
+    font-size: 1rem;
+}
+
+.skills-container {
+    background: var(--bg-0);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    max-width: 700px;
+}
+
+/* Barritas de skills */
+.skill-fill {
+    background: var(--fg-0) !important; 
+}
+
+
+/* ------------------------------------------------------------------ */
+/* 6. Footer y Responsividad */
+/* ------------------------------------------------------------------ */
+
+.main-footer {
+    border-top: 1px solid var(--border-color);
+    padding: 40px 0;
+    margin-top: 60px;
+}
+
+.social-links-grid {
+    display: flex;
+    gap: 30px;
+}
+
+.social-link {
+    color: var(--fg-0);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: opacity 0.25s ease;
+    text-transform: uppercase;
+}
+
+.social-link:hover {
+    opacity: 0.6;
+}
+
+/* Ocultar elementos específicos en móvil y viceversa */
+.contact-mobile { display: none; }
+
+
+@media (max-width: 768px) {
+    .header-content {
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header-left { order: 1; flex-basis: auto; }
+    .main-nav { order: 3; flex-basis: 100%; justify-content: flex-start; margin-top: 15px; }
+    .header-right { order: 2; flex-basis: auto; }
+
+    .contact-desktop { display: none; }
+    .contact-mobile { display: block; }
+    
+    .hero-section {
+        flex-direction: column;
+        gap: 30px;
+        padding: 60px 0 40px;
+    }
+    
+    .hero-section h1 {
+        font-size: 3rem;
+        max-width: 100%;
+    }
+
+    .filters-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .about-hero {
+        padding: 60px 0 30px;
+    }
+
+    .process-steps {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .process-arrow {
+        transform: rotate(90deg);
+        margin: 0 0 0 15px;
+    }
+    
+    .social-links-grid {
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+}
