@@ -1,0 +1,824 @@
+:root {
+    /* Colores */
+    --bg-light: #f8f8f8;       /* Fondo principal muy claro */
+    --fg-dark: #333333;        /* Texto principal */
+    --fg-thin: #999999;        /* Texto secundario y líneas finas */
+    --accent-color: #822049;   /* Vino*/
+    --bg-white: #ffffff;       /* Blanco*/
+    
+    /* Tipografía */
+    --font-heading: 'Poppins', sans-serif; 
+    --font-body: 'Inter', sans-serif;
+
+    /* Otros */
+    --border-thin: 1px solid rgba(0, 0, 0, 0.08); 
+    --spacing-unit: 1rem;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: var(--bg-light);
+    color: var(--fg-dark);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    line-height: 1.6;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* ------------------------------------------------------------------ */
+/* 2. Layout General y Contenedor Principal */
+/* ------------------------------------------------------------------ */
+
+.main-container {
+    max-width: min(1500px, 90vw);
+    margin: 0 auto;
+    padding: var(--spacing-unit) 0;
+}
+
+.page-section {
+    padding: 2rem 0; 
+}
+
+
+/* ------------------------------------------------------------------ */
+/* 10. EFECTO FOCO DE LUZ (MOUSE SPOTLIGHT) */
+/* ------------------------------------------------------------------ */
+
+#mouse-spotlight {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none; 
+    z-index: 10; 
+    
+    background-color: transparent; 
+    transition: background-image 0.05s linear; 
+}
+
+/* ------------------------------------------------------------------ */
+/* 3. Header y Navegación */
+/* ------------------------------------------------------------------ */
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--bg-white);
+    z-index: 500;
+    padding-top: 5px; 
+    padding-bottom: 5px; 
+    border-bottom: var(--border-thin);
+}
+
+.header-content {
+    padding: 0; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+
+.main-nav {
+    display: flex;
+    gap: 10rem; 
+}
+
+.nav-button {
+    background: none;
+    border: none;
+    color: var(--fg-thin);
+    cursor: pointer;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.nav-button:hover,
+.nav-button.active {
+    color: var(--accent-color); /* Color de acento */
+    font-weight: 500;
+}
+
+/* ------------------------------------------------------------------ */
+/* 4. Home Page (Hero Minimalista de Texto) */
+/* ------------------------------------------------------------------ */
+
+/* style.css - Modificación en .hero-section (Alrededor de la línea 100) */
+.hero-section {
+    position: relative;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    /* CLAVE: Alineamos los elementos internos a la izquierda */
+    align-items: flex-start; 
+    
+    width: 100%; 
+    min-height: 80vh; 
+    
+    overflow: hidden;
+    padding: 1rem 0;
+    padding-top: 5rem; 
+    background-color: var(--bg-light); 
+    
+    transition: none; 
+}
+
+/* Debemos reajustar el main-container interno, ya que el Hero ya no lo centra */
+.hero-section .main-container {
+    /* Quitamos el text-align: center; si existía, y ampliamos el ancho */
+    text-align: center;
+    max-width: 90vw;
+    width: 100%;
+}
+
+/* style.css - Modificación en .main-title-thin (Alrededor de la línea 130) */
+
+.main-title-thin {
+    font-family: var(--font-heading);
+    font-size: clamp(8rem, 15vw, 15rem); 
+    font-weight: 300; 
+    letter-spacing: -0.05em; 
+    line-height: 1;
+    margin: 0;
+    display: block; 
+    white-space: nowrap; 
+    
+    /* CLAVE: Eliminamos text-align: center; para que herede la alineación izquierda */
+    text-align: left; 
+}
+
+.personal-info {
+    font-family: var(--font-body);
+    font-size: 1.5rem; 
+    font-weight: 300;
+    color: var(--fg-dark);
+    margin-top: 1rem; 
+}
+
+.personal-info .role {
+    color: var(--fg-thin);
+    font-size: 1.2rem;
+}
+
+/* ------------------------------------------------------------------ */
+/* 5. Secciones Secundarias (Proyectos) - ESTILO GALERÍA DE IMAGEN DOMINANTE */
+/* ------------------------------------------------------------------ */
+
+.projects-list-section {
+    padding-top: 4rem; 
+    padding-bottom: 8rem;
+    padding-left: 0; 
+    padding-right: 0;
+}
+
+.projects-grid {
+    display: block; 
+    overflow-x: visible; 
+    margin-top: 2rem;
+    padding: 0;
+    width: 100%;
+}
+
+.project-card {
+    /* Diseño Limpio: Sin bordes ni sombras en el estado normal */
+    width: 100%;
+    margin-bottom: 0.5rem; /* Espacio mínimo entre filas */
+    cursor: pointer; 
+    transition: opacity 0.3s ease; 
+    
+    display: flex;
+    flex-direction: column;
+    
+    border: none; 
+    background-color: transparent; /* Fondo transparente */
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none; 
+}
+
+.project-card:last-of-type {
+    border-bottom: none; 
+}
+
+/* Efecto Hover: Sutil opacidad para destacar la interactividad */
+.project-card:hover {
+    opacity: 0.95;
+    box-shadow: none; 
+}
+
+/* ------------------------------------------------------------------ */
+/* IMAGEN PRINCIPAL Y SUPERPOSICIÓN DE TEXTO */
+/* ------------------------------------------------------------------ */
+
+.project-thumb-wrapper {
+    display: block; 
+    width: 100%;
+    /* Altura rectangular fija para el estilo de franja de imagen (similar al 4:1 o 5:1) */
+    aspect-ratio: 18 / 4; 
+    overflow: hidden;
+    position: relative;
+}
+
+.project-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    transition: transform 0.4s ease-out;
+}
+
+.project-card:hover .project-thumb {
+    transform: scale(1.02); /* Zoom sutil en la imagen */
+}
+
+/* Contenedor del texto superpuesto */
+.project-text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    /* Fondo degradado sutil para asegurar contraste con el texto */
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+    padding: 1rem 5vw;
+    color: var(--bg-white); /* Texto siempre blanco o muy claro */
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.project-text-overlay h3 {
+    /* Sutil: Reducimos el tamaño a un valor sutil y usamos peso ligero */
+    font-size: 1rem;
+    font-weight: 300; 
+    margin: 0;
+    margin-right: 1.5rem; 
+}
+
+.project-text-overlay p {
+    font-size: 0.9rem;
+    color: var(--bg-white); /* Hacemos la categoría más visible */
+    font-weight: 400;
+    margin: 0;
+}
+
+/* Ocultamos los elementos de fila antiguos */
+.project-title-row {
+    display: none; 
+}
+
+
+/* ------------------------------------------------------------------ */
+/* PREVISUALIZACIÓN DE IMAGEN AL PASAR EL CURSOR */
+/* ------------------------------------------------------------------ */
+#project-preview-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000; 
+    pointer-events: none; 
+    
+    width: 300px; 
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px; 
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.9); 
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+#project-preview-cursor.visible {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+#project-preview-cursor img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ------------------------------------------------------------------ */
+/* DETALLES OCULTOS (Información que se revela al hacer click) */
+/* ------------------------------------------------------------------ */
+
+.project-details-container {
+    height: 0;
+    overflow: hidden;
+    max-height: 0; 
+    transition: max-height 0.8s ease-in-out, padding 0.8s ease-in-out;
+    background-color: var(--bg-white); 
+}
+
+.project-details-container.visible {
+    /* Aseguramos que se expanda completamente */
+    max-height: 2500px; 
+    height: auto; 
+    padding: 3rem 0; 
+    border-top: var(--border-thin);
+}
+
+.project-info {
+    /* Estructura de los detalles: 20% Imagen / 80% Texto */
+    display: grid;
+    grid-template-columns: 20% 80%; 
+    gap: 3rem;
+    padding: 0 5vw; 
+    max-width: 1500px;
+    margin: 0 auto;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .project-info {
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;
+    }
+}
+
+.details-image-wrapper {
+    max-height: 400px; 
+    overflow: hidden;
+}
+
+.details-thumb-small {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.details-text {
+    padding-right: 2rem;
+}
+
+.project-title {
+    font-size: 2rem; 
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.project-description {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--fg-dark);
+}
+
+.project-category {
+    font-size: 0.9rem;
+    color: var(--fg-thin);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+}
+
+
+/* ------------------------------------------------------------------ */
+/* 6. Footer */
+/* ------------------------------------------------------------------ */
+
+.main-footer {
+    background-color: var(--bg-light);
+    border-top: var(--border-thin);
+    padding: 2rem 0;
+}
+
+.copyright-text {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--fg-thin);
+}
+
+/* ------------------------------------------------------------------ */
+/* 7. Responsividad */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 992px) {
+    .hero-section {
+        min-height: 50vh;
+        padding-top: 4rem;
+    }
+    
+    .main-title-thin {
+        font-size: 4rem;
+        letter-spacing: 0.1em;
+        margin-top: 20px;
+    }
+
+    /* La sección "Sobre Mí" pasa a una sola columna en móviles */
+    .home-about-container {
+        grid-template-columns: 1fr; 
+        grid-template-rows: auto;
+        gap: 2rem;
+    }
+    .cv-full-width-details,
+    .home-about-image-wrapper,
+    .home-about-text {
+        grid-column: 1 / -1; 
+        grid-row: auto; 
+    }
+    
+    /* Reordenamiento simple en móviles */
+    .home-about-text { order: 1; }
+    .home-about-image-wrapper { order: 2; }
+    .cv-full-width-details { order: 3; }
+}
+
+/* ------------------------------------------------------------------ */
+/* 8. SECCIÓN: SOBRE MÍ (Home) - 2 COLUMNAS SIMPLE (Imagen|Estudios + Bio|Experiencia) */
+/* ------------------------------------------------------------------ */
+
+.home-about-section {
+    font-family: var(--font-heading); 
+    font-weight: 300; 
+    font-size: 2rem; 
+    margin-bottom: 2rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    padding-left: 1rem; 
+    padding-right: 1rem;
+    border-top: var(--border-thin);
+    background-color: var(--bg-light); 
+    color: var(--fg-dark);
+}
+
+.home-about-container {
+    display: grid;
+    /* 2 columnas: 40% (Imagen/Estudios) / 60% (Bio/Experiencia) */
+    grid-template-columns: 40% 60%;
+    grid-template-rows: auto auto; 
+    gap: 3rem; 
+    align-items: start; 
+}
+
+/* ÁREA 1: IMAGEN PEQUEÑA (Columna 1, Fila 1) */
+.home-about-image-wrapper {
+    grid-column: 1 / 2; 
+    grid-row: 1 / 2; 
+    width: 100%; 
+    height: 350px; 
+}
+
+/* ÁREA 2: ESTUDIOS (Columna 1, Fila 2) */
+.cv-full-width-details {
+    grid-column: 1 / 2; 
+    grid-row: 2 / 3; 
+    width: 100%; 
+    padding-top: 1rem;
+    border-top: none; 
+}
+
+/* ÁREA 3: TEXTO PRINCIPAL Y EXPERIENCIA (Columna 2, Filas 1 y 2) */
+.home-about-text {
+    grid-column: 2 / 3; 
+    grid-row: 1 / 3; 
+    width: 100%; 
+    flex-shrink: 0; 
+    display: flex;
+    flex-direction: column;
+}
+
+/* Párrafo de contacto corto (deshabilitado en este diseño) */
+.cv-paragraph-below {
+    display: none;
+}
+
+/* Estilos de Tipografía CV */
+.home-about-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%); 
+    transition: filter 0.6s ease;
+}
+.home-about-image-wrapper:hover img {
+    filter: grayscale(0%); 
+}
+
+.home-about-text .cv-main-title {
+    font-family: var(--font-heading); 
+    font-weight: 700; 
+    font-size: 2.5rem; 
+    margin-bottom: 2rem;
+    color: var(--fg-dark);
+}
+
+.cv-subtitle {
+    font-family: var(--font-heading); 
+    font-size: 1.8rem; 
+    font-weight: 100;
+    margin-top: 1rem;
+    color: var(--accent-color); /* Color de acento */
+    margin-bottom: 0.5rem;
+}
+
+.home-about-text p {
+    font-size: 1rem; 
+    line-height: 2;
+    color: var(--fg-thin); 
+    margin-bottom: 1rem; 
+    font-weight: 300;
+    max-width: none;
+}
+
+.cv-details-section {
+    padding-top: 1.5rem;
+}
+
+.cv-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--fg-thin); 
+    line-height: 1.4;
+}
+.cv-item:last-of-type {
+    border-bottom: none; 
+}
+
+.cv-detail {
+    font-size: 1rem; 
+    font-weight: 200;
+    color: var(--fg-dark);
+    width: 75%;
+    text-align: left;
+}
+
+.cv-date {
+    font-size: 0.8rem; 
+    font-weight: 500;
+    color: var(--fg-dark);
+    flex-shrink: 0; 
+    width: 10%;
+}
+
+.cv-italic {
+    font-style: italic;
+    font-size: 1rem; 
+    font-weight: 300;
+    color: var(--fg-thin);
+}
+
+
+/* ------------------------------------------------------------------ */
+/* REGLAS PARA ANIMACIÓN AL HACER SCROLL (SCROLL-REVEAL) */
+/* ------------------------------------------------------------------ */
+
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px); 
+    transition: opacity 2s cubic-bezier(0.2, 0.5, 0.1, 1), 
+                transform 4s cubic-bezier(0.2, 0.5, 0.1, 1);
+}
+
+.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ------------------------------------------------------------------ */
+/* SECCIÓN CONTACTO */
+/* ------------------------------------------------------------------ */
+.contact-section {
+    padding: 8rem 0;
+    border-top: var(--border-thin);
+}
+
+.contact-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contact-title {
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 3rem;
+    color: var(--fg-dark);
+}
+
+.contact-info-grid {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    max-width: 900px;
+    gap: 3rem;
+    padding-top: 3rem;
+    border-top: var(--border-thin);
+}
+
+.contact-cta-message {
+    flex: 1;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: var(--fg-thin);
+    line-height: 1.8;
+}
+
+.contact-links {
+    flex-shrink: 0;
+    text-align: left;
+}
+
+.contact-link {
+    display: block;
+    text-decoration: none;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    color: var(--fg-dark);
+    transition: color 0.3s ease;
+}
+
+.contact-link:hover {
+    color: var(--accent-color);
+}
+
+/* ------------------------------------------------------------------ */
+/* 9. Botón de Acción y Componentes Generales */
+/* ------------------------------------------------------------------ */
+
+.action-button {
+    background-color: transparent;
+    border: 1px solid var(--fg-dark);
+    color: var(--fg-dark);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: var(--accent-color); /* Color de acento */
+    border-color: var(--accent-color);     /* Color de acento */
+    color: var(--bg-white);
+}
+
+/* ------------------------------------------------------------------ */
+/* 10. ESTILOS PÁGINA COMPLETA DE PROYECTOS (Grid de Tarjetas) */
+/* ------------------------------------------------------------------ */
+
+.projects-grid-full {
+    display: grid;
+    /* Cuadrícula de 4 columnas, adaptable a móviles */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px; 
+    margin-top: 3rem;
+    padding-bottom: 5rem;
+}
+
+.project-card-full {
+    /* Fondo claro para la estética "limpia" */
+    background-color: var(--bg-white);
+    border: var(--border-thin);
+    border-radius: 8px; /* Bordes redondeados sutiles */
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card-full:hover {
+    /* Sombra y elevación sutil al pasar el ratón */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); 
+    transform: translateY(-5px);
+}
+
+.project-header-full {
+    /* Contenedor del título y el año */
+    padding: 1.5rem 1.5rem 0.5rem 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--fg-thin);
+}
+.project-year-full {
+    font-weight: 500;
+}
+
+.project-thumb-wrapper-full {
+    width: 100%;
+    /* Aspecto cuadrado o ligeramente rectangular para la imagen de preview */
+    aspect-ratio: 16 / 9; 
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.project-thumb-wrapper-full .project-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+.project-card-full:hover .project-thumb {
+    transform: scale(1.05);
+}
+
+
+.project-info-full {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    flex-grow: 1; /* Permite que el contenido se estire */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project-title-full {
+    font-size: 1.3rem;
+    font-weight: 700; /* Título principal más fuerte */
+    color: var(--fg-dark);
+    margin-bottom: 0.5rem;
+}
+
+.project-category-full {
+    font-size: 0.9rem;
+    color: var(--fg-thin);
+    margin-top: auto; /* Empuja el rol al final */
+}
+
+/* style.css - Añadir al final del archivo */
+
+/* ------------------------------------------------------------------ */
+/* 11. EFECTO STAGGERED ZOOM (LETRA POR LETRA) */
+/* ------------------------------------------------------------------ */
+/* style.css - Modificación en .main-title-thin (Alrededor de la línea 130) */
+
+.main-title-thin {
+    font-family: var(--font-heading);
+    font-size: clamp(8rem, 15vw, 15rem); 
+    font-weight: 300; 
+    letter-spacing: -0.05em; 
+    line-height: 1;
+    margin: 0;
+    display: block; 
+    white-space: nowrap; 
+    
+    /* CLAVE: Eliminamos text-align: center; para que herede la alineación izquierda */
+    text-align: center; 
+}
+
+.stagger-letter {
+    display: inline-block; /* Crucial para aplicar transform/scale a cada letra */
+    opacity: 0;
+    transform: scale(0.8); /* Tamaño inicial más pequeño (estado de zoom out) */
+    
+    /* Animación: duración corta para que sea impactante, usando una curva suave */
+    animation: zoom-in-reveal 0.5s forwards cubic-bezier(0.2, 0.5, 0.1, 1);
+    /* El animation-delay se establece en el JS para el efecto escalonado */
+}
+
+/* ------------------------------------------------------------------ */
+/* 12. AJUSTE DE KERNING ESPECÍFICO (L y I) */
+/* ------------------------------------------------------------------ */
+
+/* La palabra es P(1) O(2) R(3) T(4) A(5) F(6) O(7) L(8) I(9) O(10).
+    Seleccionamos la letra 'L' (8vo span) para añadir un margen derecho extra.
+*/
+.main-title-thin .stagger-letter:nth-child(8) {
+    /* Ajusta este valor. 0.1em es un buen punto de partida, 
+       pero puedes usar 0.2em si necesitas separarlas más. 
+    */
+    margin-right: 0.2em !important; 
+}
+
+/* Nota: Usamos !important para asegurar que este margen anule cualquier otra regla, 
+   incluyendo el margen que CSS añade para el efecto staggered si lo hay, 
+   o el "letter-spacing" general si lo activas. */
+
+
+@keyframes zoom-in-reveal {
+    0% {
+        opacity: 10rem;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 4;
+        transform: scale(0.4); /* Termina en el tamaño normal (efecto de zoom in) */
+    }
+}
